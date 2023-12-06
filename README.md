@@ -3,7 +3,7 @@ Questão 1:
 #include <stdio.h>
 #include <string.h>
 
-int romanos(char sigla){
+int nromanos(char sigla){
    
    switch (sigla)
    {
@@ -21,17 +21,17 @@ int romanos(char sigla){
 int function_RomanoParaDecimal(char *romano){
     int res = 0;
     for (int i = 0; romano[i]; i++) {
-        if (romanosConstantes(romano[i]) < romanosConstantes(romano[i + 1])) {
-            res-= romanosConstantes(romano[i]);
+        if (romanos1(romano[i]) < romanos1(romano[i + 1])) {
+            res-= romanos1(romano[i]);
         } else {
-            res+= romanosConstantes(romano[i]);
+            res+= romanos1(romano[i]);
         }
     }
 
     return res;
 }
 
-void DecimalPara_binario(int decimal,char binario[]){
+void Decimal_binario(int decimal,char binario[]){
     binario[0] = '\0';
 
    while (decimal > 0) {
@@ -49,7 +49,7 @@ void DecimalPara_binario(int decimal,char binario[]){
     }
 }
 
-void Decimal_Para_Hexadecimal(int decimal, char hexadecimal[]){
+void Decimal_Hexadecimal(int decimal, char hexadecimal[]){
    int i = 0,resto;
    hexadecimal[0] = '\0';
    
@@ -74,15 +74,15 @@ void Decimal_Para_Hexadecimal(int decimal, char hexadecimal[]){
 }
 
 int main(){
-   char num_romano[15],binario[32], hexadecimal[100];
+   char n_romano[15],binario[32], hexadecimal[100];
    int decimal;
-   scanf("%s",num_romano); 
-   decimal = function_RomanoParaDecimal(num_romano);
-   DecimalPara_binario(decimal, binario);
-   Decimal_Para_Hexadecimal(decimal,hexadecimal);
-   printf("%s na base 2: %s\n",num_romano, binario);
-   printf("%s na base 10: %d\n",num_romano, decimal);
-   printf("%s na base 16: %s\n",num_romano, hexadecimal);
+   scanf("%s",n_romano); 
+   decimal = function_RomanoDecimal(n_romano);
+   Decimal_binario(decimal, binario);
+   Decimal_Hexadecimal(decimal,hexadecimal);
+   printf("%s na base 2: %s\n",n_romano, binario);
+   printf("%s na base 10: %d\n",n_romano, decimal);
+   printf("%s na base 16: %s\n",n_romano, hexadecimal);
    return 0;
 }
 
@@ -144,7 +144,7 @@ int validarPlaca(char *placa){
    return 1;
 }
 
-int validacaoDiaSemana(char * dia){
+int Diadasemana(char * dia){
    char *diasValidos[] = {"SEGUNDA-FEIRA", "TERCA-FEIRA", "QUARTA-FEIRA", "QUINTA-FEIRA", "SEXTA-FEIRA", "SABADO", "DOMINGO"};
    for (int i = 0; i < 7; i++){
      if (strcmp(dia, diasValidos[i]) == 0){
